@@ -1,7 +1,7 @@
 package models
 
 type Product struct {
-	ID          int16  `json:"id"`
-	Name        int16  `json:"name"`
+	ID          int16  `gorm:"primaryKey" json:"id"`
+	Name        string `json:"name"`
 	Description string `json:"description"`
 }

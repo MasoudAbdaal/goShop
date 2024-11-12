@@ -1,12 +1,10 @@
 package models
 
-import "gorm.io/gorm"
-
 type Cart struct {
-	gorm.Model
-	Product []Product
+	ID        string `gorm:"primaryKey" json:"id"`
+	UserID    string `json:"userId"`
+	ProductID int16  `json:"productId"`
+	Count     byte   `json:"count"`
 
-	ID     string `gorm:"primaryKey" json:"id"`
-	UserID string `json:"userId"`
-	Count  byte   `json:"count"`
+	Product Product `gorm:"foreignKey:ProductID"`
 }

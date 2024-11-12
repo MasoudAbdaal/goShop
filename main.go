@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import "goShop/models"
 
+func init() {
+	models.InitialModels()
+}
 func main() {
-	fmt.Println("Hello Worlds")
+
 }
