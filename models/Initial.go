@@ -11,7 +11,7 @@ import (
 )
 
 func InitialModels() {
-	db, _ := gorm.Open(sqlite.Open("goShop.db"),
+	db, _ := gorm.Open(sqlite.Open("./goShop.db"),
 		&gorm.Config{Logger: logger.New(log.New(os.Stdout, "\r\n", log.LstdFlags),
 			logger.Config{LogLevel: logger.Info})})
 

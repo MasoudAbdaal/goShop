@@ -1,0 +1,13 @@
+
+Contact: #
+Encryption: #
+Acknowledgments: #
+Preferred-Languages: en, fa
+Policy: #
+Hiring: #
+
+# We appreciate your efforts in helping us stay secure. Your reports are highly valued, 
+# and we’re committed to working collaboratively and professionally to resolve any issues identified. 
+# Please share any security concerns with us, and know that your contributions will be recognized.
+
+Expires: 2025-01-01T00:00:00Z
