@@ -11,7 +11,7 @@ import (
 )
 
 func InitialModels() {
-	db, _ := gorm.Open(sqlite.Open("./goShop.db"),
+	db, _ := gorm.Open(sqlite.Open("./models/goShop.db"),
 		&gorm.Config{Logger: logger.New(log.New(os.Stdout, "\r\n", log.LstdFlags),
 			logger.Config{LogLevel: logger.Info})})
 
@@ -19,6 +19,17 @@ func InitialModels() {
 	_ = db.AutoMigrate(&Product{})
 	_ = db.AutoMigrate(&Cart{})
 
+	mockDataInsert(db)
+
+	var cart User
+	db.Preload("Cart").Preload("Cart.Product").First(&cart, User{ID: "5"})
+
+	fmt.Println(cart)
+}
+
+// TODO: passing pointer might not follow best practices and lead to-
+// some memroy leakarge; find best way to pass db into mockDataInsert fucntion
+func mockDataInsert(db *gorm.DB) {
 	db.Create(&Product{0, "Apple", "a delicious apple"})
 	db.Create(&Product{1, "Golabi", "a delicious Golabi"})
 	db.Create(&Product{2, "Watermelon", "a delicious Watermelon"})
@@ -33,9 +44,4 @@ func InitialModels() {
 	db.Create(&Cart{ID: "Cart-3", Count: 192, ProductID: 0, UserID: "5"})
 	db.Create(&Cart{ID: "Cart-4", Count: 25, ProductID: 2, UserID: "0-1"})
 	db.Create(&Cart{ID: "Cart-5", Count: 128, ProductID: 1, UserID: "0-0"})
-
-	var cart User
-	db.Preload("Cart").Preload("Cart.Product").First(&cart, User{ID: "5"})
-
-	fmt.Println(cart)
 }
